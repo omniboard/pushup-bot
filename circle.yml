@@ -1,0 +1,35 @@
+dependencies:
+  pre:
+  - git config user.email "admins+circleci@omnib.net"
+  - git config user.name "CircleCI Build"
+  post:
+    - gem install circleci_deployment_notifier
+deployment:
+  staging:
+    branch: master
+    owner: omniboard
+    commands:
+    - git fetch --unshallow
+    - echo $CIRCLE_SHA1 > REVISION
+    - git add REVISION
+    - git commit -m "Add revision"
+    - 'L=./flynn && curl -sSL -A "`uname -sp`" https://dl.flynn.io/cli | zcat >$L && chmod +x $L'
+    - ./flynn cluster add -p $FLYNN_STAGING_TLS_PIN staging $FLYNN_STAGING_CLUSTER $FLYNN_STAGING_AUTH_KEY
+    - ./flynn -c staging -a pushup-bot-staging remote add staging
+    - git push --force staging HEAD:master
+    - ./flynn run newrelic deployments "--user=$CIRCLE_USERNAME" --revision=$CIRCLE_SHA1
+    - circleci_deployment_notify_slack -a "Pushup Bot Staging" -u $SLACK_STAGING_WEBHOOK_URL
+  production:
+    tag: /v[0-9]+\.[0-9]+\.[0-9]+/
+    owner: omniboard
+    commands:
+    - git fetch --unshallow
+    - echo $CIRCLE_TAG > REVISION
+    - git add REVISION
+    - git commit -m "Add revision"
+    - 'L=./flynn && curl -sSL -A "`uname -sp`" https://dl.flynn.io/cli | zcat >$L && chmod +x $L'
+    - ./flynn cluster add -p $FLYNN_PRODUCTION_TLS_PIN production $FLYNN_PRODUCTION_CLUSTER $FLYNN_PRODUCTION_AUTH_KEY
+    - ./flynn -c production -a pushup-bot-production remote add production
+    - git push --force production HEAD:master
+    - ./flynn run newrelic deployments "--user=$CIRCLE_USERNAME" --revision=$CIRCLE_TAG
+    - circleci_deployment_notify_slack -a "Pushup Bot Production" -u $SLACK_STAGING_WEBHOOK_URL
