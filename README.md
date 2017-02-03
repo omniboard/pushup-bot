@@ -2,6 +2,8 @@
 
 # Pushup Bot
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e5a22d8699a64ef5a45ca1a8efbb34e3)](https://www.codacy.com/app/Omniboard/pushup-bot?utm_source=github.com&utm_medium=referral&utm_content=omniboard/pushup-bot&utm_campaign=badger)
+
 Slackbot that reminds the team to do their periodic pushups.
 
 ## Running
