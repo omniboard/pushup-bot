@@ -50,16 +50,18 @@ class PostingTime
   end
 
   def next_active_date
+    now.beginning_of_day.advance days: days_until_next_active_day
+  end
+
+  def days_until_next_active_day
     # any days left this week?
     if current_weekday < active_weekdays.max
       next_active_weekday = active_weekdays.sort.find { |wday| wday > current_weekday }
-      days_from_now = next_active_weekday - current_weekday
+      next_active_weekday - current_weekday
     else
       end_of_week = (7 - current_weekday)
-      days_from_now = end_of_week + active_weekdays.min
+      end_of_week + active_weekdays.min
     end
-    now.beginning_of_day.advance days: days_from_now
-  end
   end
 
   def time_zone
