@@ -20,7 +20,7 @@ RSpec.describe SlackInteractor do
     it "sends a Slack message that it's time to do pushups" do
       expect(slack_client).to receive(:chat_postMessage).with(hash_including(
         channel: "\##{slack_channel}",
-        text: %r{time for pushups!},
+        text: /time for pushups!/,
       ))
       slack_interactor.pushup_time
     end
