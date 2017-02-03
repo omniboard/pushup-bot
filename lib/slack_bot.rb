@@ -1,4 +1,9 @@
 class SlackBot
+  def initialize
+    slack_api_token
+    channel
+  end
+
   def send(message)
     client.chat_postMessage(channel: "\##{channel}", text: message, as_user: true)
   end
@@ -19,10 +24,10 @@ class SlackBot
   end
 
   def slack_api_token
-    ConfigVariable.new(name: 'SLACK_API_TOKEN').value
+    @slack_api_token ||= ConfigVariable.new(name: 'SLACK_API_TOKEN').value
   end
 
   def channel
-    ConfigVariable.new(name: 'SLACK_CHANNEL').value
+    @channel ||= ConfigVariable.new(name: 'SLACK_CHANNEL').value
   end
 end
