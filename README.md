@@ -1,4 +1,7 @@
-
+[![CircleCI](https://circleci.com/gh/omniboard/pushup-bot.svg?style=shield)](https://circleci.com/gh/omniboard/pushup-bot)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e5a22d8699a64ef5a45ca1a8efbb34e3)](https://www.codacy.com/app/Omniboard/pushup-bot?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=omniboard/pushup-bot&amp;utm_campaign=Badge_Grade)
+[![Test Coverage](https://api.codacy.com/project/badge/Coverage/e5a22d8699a64ef5a45ca1a8efbb34e3)](https://www.codacy.com/app/Omniboard/pushup-bot?utm_source=github.com&utm_medium=referral&utm_content=omniboard/pushup-bot&utm_campaign=Badge_Coverage)
+[![Dependency Status](https://gemnasium.com/badges/github.com/omniboard/pushup-bot.svg)](https://gemnasium.com/github.com/omniboard/pushup-bot)
 
 # Pushup Bot
 
