@@ -7,6 +7,8 @@
 
 Slackbot that reminds the team to do their periodic pushups.
 
+![pushupbot: @channel time for pushups! Next pushups in 60 minutes.](.images/pushupbot-in-action.png "pushup-bot in action")
+
 ## Running
 
 The following environment variables are used:
