@@ -60,11 +60,6 @@ class PostingTime
     end
     now.beginning_of_day.advance days: days_from_now
   end
-
-  def date_of_next(weekday_index)
-    date = Date.
-    delta = date > Date.today ? 0 : 7
-    date + delta
   end
 
   def time_zone
