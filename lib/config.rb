@@ -87,6 +87,8 @@ class Config
   end
 end
 
+##
+# Gets a list of weekdays from a named environment variable.
 class WeekdayConfigVariable < ConfigVariable
   WEEKDAYS = %w(U M T W R F S)
 
