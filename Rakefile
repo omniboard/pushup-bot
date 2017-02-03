@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
 
-if ['development', 'test'].include? ENV['RAILS_ENV']
+unless ENV['RAILS_ENV'] == 'production'
   require 'dotenv'
   Dotenv.load
 end

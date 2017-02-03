@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 ruby '2.3.3'
 
+gem 'rake'
+
 # A useful console
 gem 'pry-byebug'
 gem 'pry-doc'
@@ -15,6 +17,12 @@ gem 'newrelic_rpm'
 
 # Exception reporting to Sentry
 gem "sentry-raven"
+
+# Interaction with Slack
+gem 'slack-ruby-client'
+
+# Time zone manipulation
+gem 'activesupport'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
