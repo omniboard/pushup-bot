@@ -30,7 +30,7 @@ RSpec.describe PostingTime do
       match { |actual|
         (actual.to_i - expected.to_i).abs < 1
       }
-      failure_message { |actual|
+      failure_message { |_actual|
         "the times do not match"
       }
       diffable
