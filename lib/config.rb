@@ -81,7 +81,7 @@ class Config
   def start_time_config
     ConfigVariable.new(
       name: 'START_TIME',
-      pattern: /\A(?<time>[012]?\d:\d{2}) (?<zone>[\/a-zA-Z]+)\z/,
+      pattern: %r{\A(?<time>[012]?\d:\d{2}) (?<zone>[\/a-zA-Z]+)\z},
       human_pattern: "'HH:MM zzz' where zzz is the time zone name",
     )
   end
