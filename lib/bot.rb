@@ -7,11 +7,11 @@ class Bot
   end
 
   def run
-    next_time = get_next_posting_time
+    next_post_time = report_and_determine_next_post_time
     loop do
-      sleep(next_time - Time.now)
+      sleep(next_post_time - Time.now)
       chat_bot.pushup_time
-      next_time = get_next_posting_time
+      next_post_time = report_and_determine_next_post_time
     end
   end
 
@@ -20,7 +20,7 @@ class Bot
   attr_accessor :config
   attr_accessor :chat_bot
 
-  def get_next_posting_time
+  def report_and_determine_next_post_time
     next_posting_time.tap do |next_time|
       chat_bot.next_pushup_time(next_time)
     end
