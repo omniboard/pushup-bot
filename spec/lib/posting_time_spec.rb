@@ -88,13 +88,13 @@ RSpec.describe PostingTime do
           context 'at the start of the week' do
             let(:now) { Time.utc(2017, 1, 29, 23, 44, 0) } # Sun 18:44 EST
             it 'returns the start time on the next active weekday' do
-            expect(posting_time.next).to match_time(Time.utc(2017, 1, 30, 14)) # Mon 09:00 EST
+              expect(posting_time.next).to match_time(Time.utc(2017, 1, 30, 14)) # Mon 09:00 EST
             end
           end
           context 'at the end of the week' do
             let(:now) { Time.utc(2017, 2, 4, 23, 44, 0) } # Sat 18:44 EST
             it 'returns the start time on the next active weekday' do
-            expect(posting_time.next).to match_time(Time.utc(2017, 2, 6, 14)) # Mon 09:00 EST
+              expect(posting_time.next).to match_time(Time.utc(2017, 2, 6, 14)) # Mon 09:00 EST
             end
             context 'when the next week is DST' do
               let(:now) { Time.utc(2017, 3, 10, 23, 44, 0) } # Fri 18:44 EST
