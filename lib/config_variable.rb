@@ -1,3 +1,10 @@
+require_relative 'config_error'
+
+##
+# Gets a variable by name from the environment.
+# Optionally provides a default value and enforces a validation pattern on the value.
+# Will raise a {ConfigError} if a required variable is not set or if the pattern is a mismatch.
+# If the pattern does not match, the error will include the pattern or {#human_pattern} if set.
 class ConfigVariable
   def initialize(name:, default: nil, pattern: nil, human_pattern: nil)
     self.name = name

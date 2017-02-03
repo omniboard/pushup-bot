@@ -1,5 +1,7 @@
 require 'active_support'
 
+##
+# Performs the math necessary to decide when to post the next message.
 class PostingTime
   def initialize(config:, now:)
     self.config = config
@@ -7,7 +9,6 @@ class PostingTime
   end
 
   def next
-    # binding.pry
     if current_day_active? && !ended_for_today?
       next_notification_today
     else

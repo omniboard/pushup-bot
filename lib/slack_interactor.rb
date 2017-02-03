@@ -1,6 +1,9 @@
-class SlackBot
-  def initialize
-    slack_api_token
+##
+# Sends messages to Slack.
+class SlackInteractor
+  def initialize(config:)
+    self.config = config
+    api_token
     channel
   end
 
@@ -19,15 +22,17 @@ class SlackBot
 
   private
 
+  attr_accessor :config
+
   def client
-    @client ||= Slack::Web::Client.new(token: slack_api_token, user_agent: 'PushupBot')
+    @client ||= Slack::Web::Client.new(token: api_token, user_agent: 'PushupBot')
   end
 
-  def slack_api_token
-    @slack_api_token ||= ConfigVariable.new(name: 'SLACK_API_TOKEN').value
+  def api_token
+    config.slack_api_token
   end
 
   def channel
-    @channel ||= ConfigVariable.new(name: 'SLACK_CHANNEL').value
+    config.slack_channel
   end
 end

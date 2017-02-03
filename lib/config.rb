@@ -1,7 +1,9 @@
+require_relative 'config_error'
 require_relative 'config_variable'
 
-class ConfigError < StandardError; end
-
+##
+# Fetches configuration from the environment and parses it to provide settings used in
+# the rest of the application.
 class Config
   TIME_PATTERN = /\A0?(?<hour>[12]?\d):(?<minute>\d{2})\z/
 
@@ -37,6 +39,14 @@ class Config
         end
       end
     end
+  end
+
+  def slack_api_token
+    @slack_api_token ||= ConfigVariable.new(name: 'SLACK_API_TOKEN').value
+  end
+
+  def slack_channel
+    @slack_channel ||= ConfigVariable.new(name: 'SLACK_CHANNEL').value
   end
 
   private

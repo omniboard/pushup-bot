@@ -6,17 +6,23 @@ RSpec.describe Config do
     ENV['START_TIME'] = start_time
     ENV['PERIOD_MINUTES'] = period_minutes
     ENV['END_TIME'] = end_time
+    ENV['SLACK_CHANNEL'] = slack_channel
+    ENV['SLACK_API_TOKEN'] = slack_api_token
   end
   after do
     ENV.delete 'ACTIVE_WEEKDAYS'
     ENV.delete 'START_TIME'
     ENV.delete 'PERIOD_MINUTES'
     ENV.delete 'END_TIME'
+    ENV.delete 'SLACK_CHANNEL'
+    ENV.delete 'SLACK_API_TOKEN'
   end
   let(:active_weekdays) { "MTWRF" }
   let(:start_time) { "09:00 US/Eastern" }
   let(:period_minutes) { "60" }
   let(:end_time) { "18:00" }
+  let(:slack_channel) { "slack_channel" }
+  let(:slack_api_token) { "slack_api_token" }
 
   describe '#time_zone' do
     context 'when START_TIME has a valid time zone' do
@@ -102,6 +108,38 @@ RSpec.describe Config do
       let(:end_time) { "gibberish" }
       it 'raises a ConfigError' do
         expect { subject.end_of_day_in_seconds }.to raise_error(ConfigError)
+      end
+    end
+  end
+
+  describe '#slack_api_token' do
+    context 'when SLACK_API_TOKEN is set' do
+      it 'returns the contents of it' do
+        expect(subject.slack_api_token).to eq(slack_api_token)
+      end
+    end
+    context 'when SLACK_API_TOKEN is not set' do
+      before do
+        ENV.delete 'SLACK_API_TOKEN'
+      end
+      it 'raises a ConfigError' do
+        expect { subject.slack_api_token }.to raise_error(ConfigError)
+      end
+    end
+  end
+
+  describe '#slack_channel' do
+    context 'when SLACK_CHANNEL is set' do
+      it 'returns the contents of it' do
+        expect(subject.slack_channel).to eq(slack_channel)
+      end
+    end
+    context 'when SLACK_CHANNEL is not set' do
+      before do
+        ENV.delete 'SLACK_CHANNEL'
+      end
+      it 'raises a ConfigError' do
+        expect { subject.slack_channel }.to raise_error(ConfigError)
       end
     end
   end

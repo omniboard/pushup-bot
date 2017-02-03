@@ -1,7 +1,7 @@
 require_relative '../../lib/bot'
 
 RSpec.describe Bot do
-  let(:bot) { described_class.new(config: config, chat_bot: chat_bot) }
+  let(:bot) { described_class.new(config: config, interactor: interactor) }
   let(:config) {
     instance_double(
       Config,
@@ -12,7 +12,7 @@ RSpec.describe Bot do
       end_of_day_in_seconds: end_of_day.to_i,
     )
   }
-  let(:chat_bot) { instance_double(SlackBot, pushup_time: nil, next_pushup_time: nil) }
+  let(:interactor) { instance_double(SlackInteractor, pushup_time: nil, next_pushup_time: nil) }
 
   let(:time_zone) { 'US/Eastern' }
   let(:active_weekdays) { [1, 2, 3, 4, 5] }
@@ -41,7 +41,7 @@ RSpec.describe Bot do
       it 'informs the chatbot of the time of the first post' do
         Timecop.freeze(right_now) do
           catch :done do
-            expect(chat_bot).to receive(:next_pushup_time).with(five_minutes_from_now)
+            expect(interactor).to receive(:next_pushup_time).with(five_minutes_from_now)
             bot.run
           end
         end
@@ -57,7 +57,7 @@ RSpec.describe Bot do
       it 'sends a message with the pushup message' do
         Timecop.freeze(right_now) do
           catch :done do
-            expect(chat_bot).to receive(:pushup_time)
+            expect(interactor).to receive(:pushup_time)
             bot.run
           end
         end
@@ -67,16 +67,16 @@ RSpec.describe Bot do
           catch :done do
             bot.run
           end
-          expect(chat_bot).to have_received(:next_pushup_time).with(ten_more_minutes)
+          expect(interactor).to have_received(:next_pushup_time).with(ten_more_minutes)
         end
       end
       it 'and it does it all in the right order' do
         Timecop.freeze(right_now) do
           catch :done do
-            expect(chat_bot).to receive(:next_pushup_time).with(five_minutes_from_now).ordered
+            expect(interactor).to receive(:next_pushup_time).with(five_minutes_from_now).ordered
             expect(bot).to receive(:sleep).with(5.minutes.to_i).ordered
-            expect(chat_bot).to receive(:pushup_time).ordered
-            expect(chat_bot).to receive(:next_pushup_time).with(ten_more_minutes).ordered
+            expect(interactor).to receive(:pushup_time).ordered
+            expect(interactor).to receive(:next_pushup_time).with(ten_more_minutes).ordered
             bot.run
           end
         end
