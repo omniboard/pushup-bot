@@ -75,7 +75,7 @@ RSpec.configure do |config|
   # But don't allow the tag to be committed.
   if ENV['CI']
     config.before(:example, :focus) do
-      fail 'This example was committed with `:focus`, which should never happen.'
+      raise 'This example was committed with `:focus`, which should never happen.'
     end
   end
 
