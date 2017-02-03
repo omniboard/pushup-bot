@@ -90,7 +90,7 @@ end
 ##
 # Gets a list of weekdays from a named environment variable.
 class WeekdayConfigVariable < ConfigVariable
-  WEEKDAYS = %w(U M T W R F S)
+  WEEKDAYS = %w(U M T W R F S).freeze
 
   def initialize(name:)
     super(name: name, pattern: /\AU?M?T?W?R?F?S?\z/, human_pattern: "UMTWRFS")
