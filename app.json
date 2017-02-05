@@ -4,15 +4,18 @@
   "website": "https://github.com/omniboard/pushup-bot",
   "env": {
     "START_TIME": {
-      "description": "The time of day that the first pushups shall be done, including time zone. E.g. '09:25 US/Eastern'",
+      "description": "The time of day that the first pushups shall be done, including time zone.",
+      "value": "09:55 US/Eastern",
       "required": true
     },
     "PERIOD_MINUTES": {
-      "description": "The length of the period between sets.",
+      "description": "The length of the period between pushups, in minutes.",
+      "value": "120",
       "required": true
     },
     "END_TIME": {
-      "description": "No notices will be posted at or after this time. E.g. '17:30'",
+      "description": "No notices will be posted at or after this time.",
+      "value": "18:00",
       "required": true
     },
     "ACTIVE_WEEKDAYS": {
@@ -25,7 +28,7 @@
       "required": true
     },
     "SLACK_CHANNEL": {
-      "description": "Name of the channel to post to. Currently this bot is very narrow-minded and will only post here. You must invite them to the channel.",
+      "description": "Currently Pushup Bot is very narrow-minded and will only post to one channel. You must create this channel and invite the bot to it.",
       "required": true
     }
   },
