@@ -27,7 +27,7 @@ require 'timecop'
 require 'pry'
 Bundler.require(:default, :test, :development)
 
-ENV['RAILS_ENV'] = "test"
+ENV['ENVIRONMENT'] = "test"
 
 # Auto-load from the project root so that we can use paths relative to the root when loading.
 $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..')
