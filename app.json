@@ -30,9 +30,6 @@
     "SLACK_CHANNEL": {
       "description": "Currently Pushup Bot is very narrow-minded and will only post to one channel. You must create this channel and invite the bot to it.",
       "required": true
-    },
-    "ENVIRONMENT": {
-      "value": "production"
     }
   },
   "formation": {
