@@ -29,6 +29,9 @@ Bundler.require(:default, :test, :development)
 
 ENV['RAILS_ENV'] = "test"
 
+# Auto-load from the project root so that we can use paths relative to the root when loading.
+$LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..')
+
 WebMock.disable_net_connect! allow: 'api.codacy.com'
 
 RSpec.configure do |config|
