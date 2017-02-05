@@ -1,9 +1,13 @@
 require 'rubygems'
 require 'bundler/setup'
 
-  require 'dotenv'
-  Dotenv.load
 unless ENV['ENVIRONMENT'] == 'production'
+  begin
+    require 'dotenv'
+    Dotenv.load
+  rescue LoadError
+    ENV['ENVIRONMENT'] = 'production'
+  end
 end
 
 if ENV['ENVIRONMENT'] == 'production'
