@@ -6,6 +6,6 @@ namespace :bot do
   desc "Connects to Slack and interacts with the channel."
   task :slack do
     config = Config.new
-    Bot.new(config: config, interactor: SlackInteractor.new(config)).run
+    Bot.new(config: config, interactor: SlackInteractor.new(config: config)).run
   end
 end
