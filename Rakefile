@@ -1,12 +1,12 @@
 require 'rubygems'
 require 'bundler/setup'
 
-unless ENV['RAILS_ENV'] == 'production'
   require 'dotenv'
   Dotenv.load
+unless ENV['ENVIRONMENT'] == 'production'
 end
 
-if ENV['RAILS_ENV'] == 'production'
+if ENV['ENVIRONMENT'] == 'production'
   Bundler.require(:default)
 else
   Bundler.require(:default, :development)

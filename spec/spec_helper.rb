@@ -27,7 +27,7 @@ require 'timecop'
 require 'pry'
 Bundler.require(:default, :test, :development)
 
-ENV['RAILS_ENV'] = "test"
+ENV['ENVIRONMENT'] = "test"
 
 WebMock.disable_net_connect! allow: 'api.codacy.com'
 
