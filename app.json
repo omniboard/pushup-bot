@@ -1,0 +1,38 @@
+{
+  "name": "Pushup Bot",
+  "description": "Slack Bot that says when it's time to do pushups",
+  "website": "https://github.com/omniboard/pushup-bot",
+  "env": {
+    "START_TIME": {
+      "description": "The time of day that the first pushups shall be done, including time zone. E.g. '09:25 US/Eastern'",
+      "required": true
+    },
+    "PERIOD_MINUTES": {
+      "description": "The length of the period between sets.",
+      "required": true
+    },
+    "END_TIME": {
+      "description": "No notices will be posted at or after this time. E.g. '17:30'",
+      "required": true
+    },
+    "ACTIVE_WEEKDAYS": {
+      "description": "List of weekdays that notices will be sent. All weekdays are 'UMTWRFS'.",
+      "value": "MTWRF",
+      "required": true
+    },
+    "SLACK_API_TOKEN": {
+      "description": "Real-time messaging API Token. Create a new bot here: https://slack.com/apps/new/A0F7YS25R-bots",
+      "required": true
+    },
+    "SLACK_CHANNEL": {
+      "description": "Name of the channel to post to. Currently this bot is very narrow-minded and will only post here. You must invite them to the channel.",
+      "required": true
+    }
+  },
+  "formation": {
+    "slackbot": {
+      "quantity": 1
+    }
+  },
+  "image": "heroku/ruby"
+}

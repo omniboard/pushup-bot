@@ -9,6 +9,12 @@ Slackbot that reminds the team to do their periodic pushups.
 
 ![pushupbot: @channel time for pushups! Next pushups in 60 minutes.](.images/pushupbot-in-action.png "pushup-bot in action")
 
+## Deployment
+
+Built in Ruby. Can be deployed to Heroku or similar infrastructure.
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 ## Running
 
 The following environment variables are used:
@@ -19,10 +25,6 @@ The following environment variables are used:
 - `ACTIVE_WEEKDAYS`: List of weekdays that notices will be sent. Default is "MTWRF", possible values "MTWRFSU".
 - `SLACK_API_TOKEN`
 - `SLACK_CHANNEL`
-
-## Deployment
-
-Built in Ruby. Can be deployed to Heroku or similar infrastructure.
 
 ## Development
 
