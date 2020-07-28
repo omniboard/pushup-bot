@@ -37,7 +37,7 @@ GEM
     hashie (3.5.1)
     i18n (0.8.0)
     interception (0.5)
-    json (2.0.3)
+    json (2.3.1)
     method_source (0.8.2)
     minitest (5.10.1)
     multipart-post (2.0.0)
